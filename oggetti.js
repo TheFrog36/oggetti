@@ -119,27 +119,6 @@ const arrayStudenti = [studente1, studente2, studente3, studente4, studente5, st
 
 console.log(arrayStudenti);
 
-// function filterMF(array, sesso = 'm') {
-//     const newArray = [];
-//     if (sesso === 'M' || sesso === 'm') {
-//         for (let i = 0; i < array.length; i++) {
-//             const studente = array[i];
-//             if (studente.sesso === 'M') {
-//                 newArray.push(studente)
-//             }
-//         }
-//     }
-//     else {
-//         for (let i = 0; i < array.length; i++) {
-//             const studente = array[i];
-//             if (studente.sesso === 'F') {
-//                 newArray.push(studente)  
-//             }
-//         }
-//     }
-//     return newArray
-// } 
-
 function filterMF(array, sesso ){
     const newArray = [];
     if(sesso === 'm' || sesso === 'M') sesso = 'M';
@@ -149,6 +128,54 @@ function filterMF(array, sesso ){
     }
     return newArray;
 }
-
 console.log(filterMF(arrayStudenti, 'M'))
 
+console.log('print solo femmine tramite filter function', arrayStudenti.filter((e) => e.sesso === 'F'))
+
+function print_oldest_student(array){
+    let oldest = array[0];
+    for(let i = 1; i < array.length; i++){
+        if(oldest.annoDiNascita > array[i].annoDiNascita) oldest = array[i];
+    }
+    return oldest;
+}
+console.log('stampo studente più vecchio', print_oldest_student(arrayStudenti));
+
+console.log('stampo studente più vecchio con reduce e lambda', arrayStudenti.reduce((p,c) => p.annoDiNascita > c.annoDiNascita ? c : p)) 
+
+const testArray4 = [2, 4, 7, -9, 1000, -45, 2, 12, 333, -1000, 123, 34];
+const testArray5 = ["rosso", "verde", "giallo", "arancione", "magenta", "blu"];
+
+console.log('numeri disordinati', testArray4);
+console.log('numeri ordinati', testArray4.sort());
+console.log(testArray4.sort((e1, e2) => e1 -e2))
+
+function sort_number(n1, n2){
+    if(n1 > n2) return 1;
+    else return -1;
+}
+
+console.log(testArray4.sort(sort_number))
+
+function sort_number_2(el1, el2){
+    return el1 - el2;
+}
+console.log(testArray4.sort(sort_number_2))
+
+function sort_string(el1, el2){
+    return el1.localeCompare(el2);
+}
+console.log(testArray5.sort(sort_string));
+console.log(testArray5.sort((e1, e2) => e1.length - e2.length));
+
+console.log(arrayStudenti.sort((e1, e2) => e1.nome.localeCompare(e2.nome)))
+
+function compare_students_by_age_and_surname(el1, el2){
+    const ordine = el2.annoDiNascita - el1.annoDiNascita;
+    if(ordine === 0) return el1.cognome.localeCompare(el2.cognome);
+    else return ordine
+}
+
+console.log(arrayStudenti.sort(compare_students_by_age_and_surname))
+
+console.log(JSON.stringify(studente1)) //trasforma l'oggetto in una stringa
