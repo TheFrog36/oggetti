@@ -119,26 +119,36 @@ const arrayStudenti = [studente1, studente2, studente3, studente4, studente5, st
 
 console.log(arrayStudenti);
 
-function filterMF(array, sesso = 'm') {
-    const newArray = [];
-    if (sesso === 'M' || sesso === 'm') {
-        for (let i = 0; i < array.length; i++) {
-            const studente = array[i];
-            if (studente.sesso === 'M') {
-                newArray.push(studente)
-            }
-        }
-    }
-    else {
-        for (let i = 0; i < array.length; i++) {
-            const studente = array[i];
-            if (studente.sesso === 'F') {
-                newArray.push(studente)  
-            }
-        }
-    }
-    return newArray
-} 
+// function filterMF(array, sesso = 'm') {
+//     const newArray = [];
+//     if (sesso === 'M' || sesso === 'm') {
+//         for (let i = 0; i < array.length; i++) {
+//             const studente = array[i];
+//             if (studente.sesso === 'M') {
+//                 newArray.push(studente)
+//             }
+//         }
+//     }
+//     else {
+//         for (let i = 0; i < array.length; i++) {
+//             const studente = array[i];
+//             if (studente.sesso === 'F') {
+//                 newArray.push(studente)  
+//             }
+//         }
+//     }
+//     return newArray
+// } 
 
-console.log(filterMF(arrayStudenti, 'F'))
+function filterMF(array, sesso ){
+    const newArray = [];
+    if(sesso === 'm' || sesso === 'M') sesso = 'M';
+    else sesso = 'F';
+    for(let i = 0; i < array.length; i++){
+        if(array[i].sesso === sesso) newArray.push(array[i])
+    }
+    return newArray;
+}
+
+console.log(filterMF(arrayStudenti, 'M'))
 
